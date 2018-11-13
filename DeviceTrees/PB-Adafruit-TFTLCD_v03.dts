@@ -1,0 +1,102 @@
+/*
+* Copyright (C) 2018 Logan Baldridge <baldridge.logan@gmail.com>
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License version 2 as
+* published by the Free Software Foundation.
+*
+*/
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/am33xx.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/*
+ * Pin assignments
+ *
+ * Module      Connector
+ * LITE    <-  SYS_VOUT 
+ * MISO    ->  P1.10  /* spi: spi0_d0   ( 3 - SPI0_D0  )
+ * SCK     <-  P1.8   /* spi: spi0_sclk ( 2 - SPI0_SCLK)
+ * MOSI    <-  P1.12  /* spi: spi0_d1   ( 4 - SPI0_D1  )
+ * TFT_CS  <-  P1.6   /* spi: spi0_cs0  ( 5 - SPI0_CS0 )
+ * CARD_CS <-  NC
+ * D/C     <-  P2.18  /* lcd: GPIO47    (47 - GPMC_AD15)
+ * RESET   <-  P2.20  /* lcd: GPIO64    (64 - GPMC_CSn3)
+ *
+ */
+
+
+/*
+ * Free up the pins used by the cape from the pinmux helpers.
+*/ 
+
+/ {
+
+	fragment@0 {
+		target = <&ocp>; 
+		__overlay__ {
+			P1_06_pinmux { status = "disabled"; }; /* LCD - CS */
+			P1_08_pinmux { status = "disabled"; }; /* LCD - SCLK */
+			P1_10_pinmux { status = "disabled"; }; /* LCD - MISO */
+			P1_12_pinmux { status = "disabled"; }; /* LCD - MOSI */
+			P2_01_pinmux { status = "disabled"; }; /* LCD - LED */
+			P2_18_pinmux { status = "disabled"; }; /* LCD - DC */
+			P2_20_pinmux { status = "disabled"; }; /* LCD - RST */
+		};
+	};
+
+/*
+ * Free up the gpios used by the cape-universal gpio helpers.
+ */
+	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			cape-universal { status = "disabled"; };
+		};
+	};
+
+/*
+ * Free up the SPI port used by the cape and reallocate it for the LCD.
+ */
+	fragment@2 {
+		target = <&spi0>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+			channel@0 {
+				status = "disabled";
+			};
+			channel@1 {
+				status = "disabled";
+			};
+			adafruit18: adafruit18@0{
+				compatible = "sitronix,st7735r";
+				pinctrl-names = "default";
+				pinctrl-0 = <
+					&P1_06_spi_cs_pin   /* CS */
+					&P1_08_spi_sclk_pin /* SCLK */
+					&P1_10_spi_pin      /* MISO */
+					&P1_12_spi_pin      /* MOSI */
+					&P2_20_gpio_pin     /* RST */
+					&P2_18_gpio_pin     /* DC */
+					&P2_01_gpio_pin     /* LED */
+				>;
+				reg = <0>;
+				buswidth = <8>;
+				reset-gpios = <&gpio2 0 0>;
+				dc-gpios = <&gpio1 15 0>;
+				led-gpios = <&gpio1 18 1>;
+				debug = <1>;
+				spi-max-frequency = <32000000>;
+				rotate = <0>;
+				bgr;
+				fps = <30>;
+			};
+		}; 
+	};
+};
