@@ -4871,7 +4871,7 @@ by exp-lbrs.ulp</description>
 <sheets>
 <sheet>
 <plain>
-<text x="314.96" y="20.32" size="2.54" layer="94">ENGI301 - Example</text>
+<text x="314.96" y="20.32" size="2.54" layer="94">ENGI301 - LOGAN BALDRIDGE</text>
 <text x="332.74" y="5.08" size="2.54" layer="94">1/1</text>
 <wire x1="149.86" y1="12.7" x2="149.86" y2="251.46" width="0.1524" layer="97"/>
 <text x="55.88" y="241.3" size="3.81" layer="97">PocketBeagle</text>

@@ -185,7 +185,7 @@
 <text x="45.847" y="7.62" size="1.778" layer="21">POWERBOOST</text>
 <text x="2.413" y="6.35" size="1.778" layer="21">AUDIO OUT</text>
 <text x="82.423" y="20.32" size="1.778" layer="21" rot="R90">POCKETBEAGLE</text>
-<text x="7.747" y="0.762" size="1.778" layer="21">POCKETBEAGLE-POD Rev 1A</text>
+<text x="7.747" y="0.762" size="1.778" layer="21">POCKETBEAGLE-POD Rev 1</text>
 <text x="26.162" y="29.464" size="0.6096" layer="21" rot="R90">P8 GND</text>
 <text x="23.622" y="29.464" size="0.6096" layer="21" rot="R90">P7 3.3V</text>
 <text x="21.082" y="28.956" size="0.6096" layer="21" rot="R90">P4 DATA</text>
