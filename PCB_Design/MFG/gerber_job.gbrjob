@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2018-12-12T07:23:10Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.2.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.53,
+        "LayerNumber": 4,
+        "Name": {
+            "ProjectId": "POCKETBEAGLE-POD"
+        },
+        "Owner": "Logan Baldridge <lab22@rice.edu>",
+        "Size": {
+            "X": 100.33,
+            "Y": 58.42
+        }
+    }
+}
