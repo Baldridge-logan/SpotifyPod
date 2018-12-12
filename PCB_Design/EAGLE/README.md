@@ -1,1 +1,1 @@
-This folder contains relevant EAGLE PCB design files.
+This folder contains relevant EAGLE PCB design files. This custom PCB contains a PCM5102a DAC chip, TPS717 Linear Regulator, audio jack, USB-A connector, and connection pins for the TFT screen and Ipod Clickwheel.
